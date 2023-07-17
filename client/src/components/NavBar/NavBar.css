@@ -1,0 +1,32 @@
+.nav-container {
+  background-color: rgb(236, 240, 23);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+}
+
+.img-container img {
+  width: 3rem;
+  margin: 10px;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+}
+
+.link-container a {
+  text-decoration: none;
+  color: black;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.link-container a:hover {
+  color: blue;
+}
