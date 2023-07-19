@@ -5,14 +5,23 @@ const getApiDogs = async () => {
     try {
       const dogrequest = await axios.get("https://api.thedogapi.com/v1/breeds?limit=58");
       const dogs = await dogrequest.data.map((dog) => {
+        let heightArray = [];
+        if (dog.height.metric) {
+            heightArray = dog.height.metric.split(" - ");
+        }
+      
+        let weightArray = [];
+        if (dog.weight.metric) {
+            weightArray = dog.weight.metric.split(" - ");
+        }
         return {
             id: dog.id,
             name: dog.name,
             image: dog.image.url,
-            height: dog.height.metric,
-            weight: dog.weight.metric,
+            height: heightArray,
+            weight: weightArray,
             life_span: dog.life_span,
-            temperament: dog.temperament
+            temperaments: dog.temperament
         }
       });
       return dogs;
@@ -46,7 +55,7 @@ const getAllDogs = async () => {
 const getApiTemperaments = async () =>{
   const allData = await getApiDogs();
   const everyTemperament = allData
-    .map((dog) => (dog.temperament ? dog.temperament : "No info"))
+    .map((dog) => (dog.temperaments ? dog.temperaments : "No info"))
     .map((dog) => dog?.split(", "));
     const eachTemperament = [...new Set(everyTemperament.flat())];
 
