@@ -62,9 +62,19 @@ export default function Home() {
       <div>
         <p>A-Z / Z-A</p>
         <select onChange={e => handleSort(e)}>
+          <option disabled selected defaultValue>
+                  Filter by Name
+                </option>
           <option value="asc">Ascendente</option>
           <option value="desc">Descendente</option>
         </select>
+        <select >
+                <option disabled selected defaultValue>
+                  Filter by weight
+                </option>
+                <option value="max_weight">Max</option>
+                <option value="min_weight">Min</option>
+              </select>
         <p>Filtro Creados</p>
         <select onChange={e => handleFilterCreated(e)}>
           <option value="all">Todos</option>
@@ -93,7 +103,7 @@ export default function Home() {
             <Card
               name={dog.name}
               image={dog.image}
-              temperament={dog?.temperaments ?? dog?.temperament}
+              temperament={dog?.temperaments}
               id={dog.id}
               key={dog.id}
               />

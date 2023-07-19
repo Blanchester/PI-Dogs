@@ -35,12 +35,18 @@ function rootReducer (state = initialState, action) {
             if (action.payload === "Todos") {
               filteredDogs = allDogs;
             } else {
-              for (let i = 0; i < allDogs.length; i++) {
-                let found = allDogs[i].temperaments.find((t) => t === action.payload);
-                if (found) {
-                  filteredDogs.push(allDogs[i]);
-                } 
-              }
+                for (let i = 0; i < allDogs.length; i++) {
+                    if (typeof allDogs[i].temperaments === "object" && allDogs[i].temperaments !== null) {
+                      let found = allDogs[i].temperaments.find((t) => t.name === action.payload);
+                      if (found) {
+                        filteredDogs.push(allDogs[i]);
+                      }
+                    } else if (typeof allDogs[i].temperaments === "string") {
+                      if (allDogs[i].temperaments.includes(action.payload)) {
+                        filteredDogs.push(allDogs[i]);
+                      }
+                    }
+                  }
             }
             return {
               ...state,
