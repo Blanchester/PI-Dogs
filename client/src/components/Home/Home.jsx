@@ -8,6 +8,7 @@ import { Paginado } from '../Paginado/Paginado';
 import styles from "./Home.module.css";
 
 
+
 export default function Home() {
 
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function Home() {
     dispatch(getTemperaments())
   }, [dispatch])
 
-  function handleClick(e){
+  function handleClick(e) {
     e.preventDefault();
     dispatch(getDogs())
   }
@@ -49,64 +50,69 @@ export default function Home() {
   }
 
   const handleFilterByTemperament = (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     dispatch(FilterByTemperament(e.target.value));
   };
 
   return (
     <div>
-      <div>
-        <h1>Estamos en el componente Home</h1>
-      </div>
-      <button onClick={e=>handleClick(e)}>Volver a cargar</button>
-      <div>
-        <p>A-Z / Z-A</p>
-        <select onChange={e => handleSort(e)}>
-          <option disabled selected defaultValue>
-                  Filter by Name
+      <div className={styles.headerContainer} >
+        <div className={styles.header}>
+          <h1>Welcome to Dog Encyclopedia</h1>
+        </div>
+        <div className={styles.filters}>
+          <div className={styles.sortFilter}>
+            <p>Sort by Name:</p>
+            <select onChange={handleSort}>
+              <option disabled selected defaultValue>
+                Select an option
+              </option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+          <div className={styles.sortFilter}>
+            <p>Filter by Weight:</p>
+            <select>
+              <option disabled selected defaultValue>
+                Select an option
+              </option>
+              <option value="max_weight">Max</option>
+              <option value="min_weight">Min</option>
+            </select>
+          </div>
+          <div className={styles.sortFilter}>
+            <p>Filter by Origin:</p>
+            <select onChange={handleFilterCreated}>
+              <option value="all">All</option>
+              <option value="originals">Originals</option>
+              <option value="created">Created</option>
+            </select>
+          </div>
+          <div className={styles.sortFilter}>
+            <p>Filter by Temperament:</p>
+            <select onChange={handleFilterByTemperament}>
+              <option disabled selected defaultValue>
+                Select a temperament
+              </option>
+              <option value="Todos">All</option>
+              {temps?.map((temp) => (
+                <option value={temp.name} key={temp.id}>
+                  {temp.name}
                 </option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-        <select >
-                <option disabled selected defaultValue>
-                  Filter by weight
-                </option>
-                <option value="max_weight">Max</option>
-                <option value="min_weight">Min</option>
-              </select>
-        <p>Filtro Creados</p>
-        <select onChange={e => handleFilterCreated(e)}>
-          <option value="all">Todos</option>
-          <option value="originals">Originals</option>
-          <option value="created">Created</option>
-        </select>
-        <select onChange={handleFilterByTemperament}>
-          <option disabled selected defaultValue>Temperaments</option>
-          <option value="Todos">All</option>
-            {
-              temps?.map(temp => (
-                <option value={temp.name}  key={temp.id}>{temp.name}</option>
-                ))
-            }
-          </select>
+              ))}
+            </select>
+          </div>
+        </div>
+        <button onClick={handleClick}>Reload Dogs</button>
 
-        <Paginado
-          dogsPerPage={dogsPerPage}
-          allDogs={allDogs.length}
-          paginado={paginado}
-        />
-        
-        <div className={styles.cardGrid}> 
+      </div>
+      <div className={styles.container}>
+        <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado} />
+        <div className={styles.cardGrid}>
           {currentDogs.map((dog) => (
-            <Link to={`/dogs/${dog.id}`}>
-            <Card
-              name={dog.name}
-              image={dog.image}
-              temperament={dog?.temperaments}
-              id={dog.id}
-              key={dog.id}
-              />
+            <Link to={`/dogs/${dog.id}`} key={dog.id} className={styles.links}>
+              <Card name={dog.name} image={dog.image} temperament={dog?.temperaments} id={dog.id} />
             </Link>
           ))}
         </div>

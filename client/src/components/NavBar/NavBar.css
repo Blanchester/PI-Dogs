@@ -1,15 +1,27 @@
+.navbar-stk{
+  position: sticky;
+  top: 0;
+  border-bottom: 3px solid #7f8fc4;
+}
 .nav-container {
-  background-color: rgb(236, 240, 23);
-  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #A5B5EB;
   display: flex;
   align-items: center;
+  padding: 0.3rem 1rem;
 }
-
+.nav-link-container{
+  display: flex;
+  justify-content: flex-start;
+}
 .img-container {
   display: flex;
   align-items: center;
 }
-
+.icon-image{
+  border-radius: 100%;
+}
 .img-container img {
   width: 3rem;
   margin: 10px;
@@ -25,8 +37,9 @@
   color: black;
   margin: 0 10px;
   font-weight: bold;
+  transition: 0.3s;
 }
 
 .link-container a:hover {
-  color: blue;
+  color: #DDF1CF;
 }

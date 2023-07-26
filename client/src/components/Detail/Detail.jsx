@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../../actions";
 import { useEffect } from "react";
 import styles from "./Detail.module.css";
+import spinner from '../../assets/actualizar.png'
 
 
 export default function Detail(props) {
@@ -17,29 +18,43 @@ export default function Detail(props) {
   // console.log(myDog);
   return (
     <div className={styles.container}>
-      {myDog.length > 0 ? (
-        <div>
-          {console.log(myDog[0])}
-          <h1 className={styles.title}>Soy {myDog[0].name}</h1>
-          <img src={myDog[0].image} alt="Not found" className={styles.image} />
-          <h2 className={styles.info}>Height min: {myDog[0].height[0]}</h2>
-          <h2 className={styles.info}>Height max: {myDog[0].height[1]}</h2>
-          <h2 className={styles.info}>Weight min: {myDog[0].weight[0]}</h2>
-          <h2 className={styles.info}>Weight max: {myDog[0].weight[1]}</h2>
-          <h2 className={styles.info}>Life span: {myDog[0].life_span}</h2>
-          <h4 className={styles.temperaments}>Temperaments:{" "}
-            {typeof myDog[0].temperaments === "object" && myDog[0].temperaments !== null
-              ? myDog[0].temperaments.map((temperament, index) => (
-                <span key={index}>
-                {index > 0 ? ", " : ""}{temperament.name}
-              </span>
-                ))
-              : myDog[0].temperaments}</h4>
-        </div>
-      ) : (
-        <p className={styles.loading}>... Loading</p>
-      )}
-      <Link to="/home" className={styles.link}>Volver</Link>
+      <div className={styles.cardDetail}>
+        {myDog.length > 0 ? (
+          <> 
+            <img src={myDog[0].image} alt="Not found" className={styles.image} />
+            <div className={styles.description}>
+              {console.log(myDog[0])}
+              <h1 className={styles.title}>Soy {myDog[0].name}</h1>
+              <div>
+                <div className={styles.dataDetail}>
+                  <span className={styles.info}>Height min: {myDog[0].height[0]}</span>
+                  <span className={styles.info}>Height max: {myDog[0].height[1]}</span>
+                </div>
+                <div className={styles.dataDetail}>
+                  <span className={styles.info}>Weight min: {myDog[0].weight[0]}</span>
+                  <span className={styles.info}>Weight max: {myDog[0].weight[1]}</span>
+                </div>
+              <span className={styles.info}>Life span: {myDog[0].life_span}</span>
+              </div>
+              <span className={styles.temperaments}>Temperaments:{" "}
+                {typeof myDog[0].temperaments === "object" && myDog[0].temperaments !== null
+                  ? myDog[0].temperaments.map((temperament, index) => (
+                    <span key={index}>
+                    {index > 0 ? ", " : ""}{temperament.name}
+                  </span>
+                    ))
+                  : myDog[0].temperaments}</span>
+            </div>
+            <Link to="/home" className={styles.link}>Volver</Link>
+          </>
+        ) : (
+          <div>
+            <p className={styles.loading}>
+            <img className={styles.spinner} src={spinner} alt="logo food" />
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

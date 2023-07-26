@@ -2,11 +2,12 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin: 20px 0;
   }
   
   .number {
     margin: 0 5px;
+    cursor: pointer;
   }
   
   .number a {

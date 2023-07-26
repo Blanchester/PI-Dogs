@@ -1,5 +1,69 @@
 .cardGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Crea tres columnas de igual ancho */
-    gap: 20px; /* Define un espacio de separación entre las cards */
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Crea tres columnas de igual ancho 
+  gap: 20px;  Define un espacio de separación entre las cards  */
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: transparent;
+}
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-image: url(https://t3.ftcdn.net/jpg/05/16/75/96/360_F_516759626_pZIy1xaSVyPdisbYWUjJPQl9D5bUgehr.jpg);
+background-position: center;
+background-size: cover;
+background-repeat: none;
+height: 300px;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+button {
+  width: 200px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  
+}
+
+.filters {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filters p {
+  font-weight: bold;
+}
+
+.sortFilter select {
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-right: 1rem;
+}
+.links{
+  text-decoration: none;
+}

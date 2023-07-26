@@ -7,18 +7,31 @@ const { Dog, Temperament } = require('../db');
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-    const {name} = req.query;
-    let allDogs = await getAllDogs();
-    if(name) {
-        let nameDog = allDogs.filter(p => p.name.toLowerCase().includes(name.toLocaleLowerCase()));
-        nameDog.length ? 
-        res.status(200).send(nameDog) :
-        res.status(404).send("No se encontro el dog")
-    }else {
-        res.status(200).send(allDogs)
-  }
-  });
+// router.get('/', async (req, res) => {
+//     const {name} = req.query;
+//     let allDogs = await getAllDogs();
+//     if(name) {
+//         let nameDog = allDogs.filter(p => p.name.toLowerCase().includes(name.toLocaleLowerCase()));
+//         nameDog.length ? 
+//         res.status(200).send(nameDog) :
+//         res.status(404).send("No se encontro el dog")
+//     }else {
+//         res.status(200).send(allDogs)
+//   }
+//   });
+
+  // router.get('/', async (req, res) => {
+  //   const {height} = req.query;
+  //   let allDogs = await getAllDogs();
+  //   if(height) {
+  //       let heightDog = allDogs.filter(p => p.height.includes(height));
+  //       heightDog.length ? 
+  //       res.status(200).send(heightDog) :
+  //       res.status(404).send("No se encontro el dog")
+  //   }else {
+  //       res.status(200).send(allDogs)
+  // }
+  // });
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
